@@ -1,0 +1,84 @@
+.header{
+	border:2px solid black;
+}
+body{
+	background-color: #0174DF;
+}
+.demo{
+	margin-top: 40px;
+	border:6px outset gray;
+	height: 600px;
+	border-radius: 10px;
+}
+.chat-header{
+	height: 50px;
+	background-color: #2E64FE;
+	width: 100%;
+	border-bottom: 3px solid black;
+}
+.img_logo{
+	margin-top: 8px;
+	width: 30px;
+	border-radius: 10px;
+	margin-left: 10px;
+	border: 3px solid gray;
+}
+.chat-box{
+
+        list-style: none;
+        width: 100%;
+  
+      
+        padding-left: 3px;
+        padding-right: 6px;
+
+}
+.other{
+	margin-top: 10px !important;
+	margin-left: 5px;
+}
+.avatar:hover img{
+	border-color: white;
+	border: 2px solid;
+}
+.avatar img{
+	border-radius: 30px;
+	width: 25px;
+}
+.pre-scrollable{
+	
+	max-height: none !important;
+	height: 479px;
+	padding-bottom: 0
+}
+
+.content{
+	z-index: -1;
+	font-family: 'Open Sans Condensed', sans-serif;
+	width: 100%;
+	height: auto;
+	text-align: left;
+	margin-top: 10px;
+	margin-right: 10px;
+	border-bottom: 2px solid black;
+
+
+}
+.with_bot{
+	border-bottom: 2px solid black;
+}
+
+.self{
+	margin-right: 0px !important;
+	width:98.5%;
+	text-align: right !important;
+}
+.form-control-feedback:hover{
+	color:blue;
+}
+.form-group .form-control-feedback {
+  pointer-events: initial  /* or - auto // or -  unset  */
+}
+.fred{
+	font-family: 'Fredoka One', cursive;
+}

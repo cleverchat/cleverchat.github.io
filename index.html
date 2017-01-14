@@ -1,3 +1,173 @@
-<html> 
-	ja moin
+<html>
+		
+		<head>
+			<title>Cleverchat</title>
+			<link rel="stylesheet" type="text/css" href="css/animate.css">
+			<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+				<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">	
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+			<link rel="stylesheet" type="text/css" href="fa/css/font-awesome.css">
+			<script src="typed.js"></script>
+			<style type="text/css">
+			::-webkit-scrollbar {
+			  width: 0px;
+			  height: 0px;
+			}
+
+			</style>
+			<script>
+				function demo(){
+					$('#in').prop('readonly', true);
+					setTimeout(function(){
+						addOther("timcook","img/apple_icon.png","Hey it's me, Tim!"); 		
+					}, 2000);
+					setTimeout(function(){
+						addOther("mark","img/facebook_icon.png","Hey what's up??"); 		
+					}, 4000);
+
+					setTimeout(function(){
+						keyIn("It's so cold outside!",10); 		
+					}, 6000);
+					setTimeout(function(){
+						addOther("timcook","img/apple_icon.png","Yeah ! 0F atm in Cupertino!"); 		
+					}, 12000);
+					setTimeout(function(){
+						addOther("mark","img/facebook_icon.png","I love Silicon Valley! It's warm even in the winter <3"); 		
+					}, 16000);
+					setTimeout(function(){
+							$('#in').prop('readonly', false);	
+					}, 18000);
+					
+
+
+
+				}
+			function addOther(name,avatar,message){
+				
+				n = $(".other").length;
+				$(".chat-box").append('<div style="clear:both"></div><li class="other other'+n+'"><div class="avatar animated fadeInLeft" style="display:inline-block"><img src="'+avatar+'"> <cite title="Source Title"><span class="currentTime"></span> - @'+name+'</cite></div>');
+					
+					setTimeout(function(){
+						 $(".other"+n).append('<div class="content animated fadeInLeft"><h4><b>'+message+'</b></h4></div></li>');
+					}, 900);
+				$(".chat-box").scrollTop($(".chat-box")[0].scrollHeight);
+				
+			}
+			   
+			function keyIn(msg){
+				$("#in").typed({
+				     strings: [msg],
+				      typeSpeed: 50
+			     });
+				setTimeout(function() {
+					$("#submit").click();
+
+				}, 3000);
+
+				
+
+			
+
+			}
+	      	$(document).ready(function() {
+			    $('#submit').click(sendMessage);
+			
+			});
+			function sendMessage(e){
+			  
+				
+				try{
+					e.preventDefault();
+				}catch (err){
+
+				}
+				message = $("#in").val();
+              if(message != ""){
+				n = $(".self").length;
+				$(".chat-box").append('<div style="clear:both"></div><li class="me me'+n+'" style="margin-top:10px"><div class="avatar pull-right animated fadeInLeft" style="display:inline-block"> <cite title="Source Title">@jackdorsey - <span class="currentTime"></span></cite> <img src="img/twitter_icon.png" onmouseover=""></div>');
+				$(".chat-box").scrollTop($(".chat-box")[0].scrollHeight);
+					setTimeout(function(){
+						 $(".me"+n).append('<div class="content self pull-right animated fadeInRight"><h4><b>'+message+'</b></h4></div></li>');
+					$(".chat-box").scrollTop($(".chat-box")[0].scrollHeight);	
+					}, 900);
+                $("#in").val(""); 
+                }
+			}
+
+			</script>
+			
+			
+		</head>
+		<body onload="demo()" style="background-color: #08088A">
+			<div class="col-md-6 col-md-offset-1" style="z-index: -1;float: left;margin-top: 100px;position: absolute;color: white">
+				<h1 class="fred" style="font-size: 60px;margin-left: 10px"><b>Cleverchat</b></h1>
+				
+			</div>
+			
+			<div class="container" style="z-index: 1">
+				
+					<div class="col-md-8 col-md-offset-2 header">
+					
+					</div>
+		
+			<br>
+					<div class="col-md-4 col-md-offset-4 demo animated fadeInUp">
+						<div class="row">
+							<div class="chat-header">
+								<img src="img/logo_white.png" onclick="location.href='https://cleverchat.github.io'" class="img_logo">
+							</div>
+							</div>
+							<div class="row">
+							<ol class="chat-box pre-scrollable" style="background-color:white">
+						<!--	<div class=""> 
+							    <li class="other">
+									
+										<div class="avatar other1_av" style="display: inline-block;"><img src="img/avatar.svg" onmouseover=""> <cite title="Source Title"><span class="currentTime"></span> - @bill</cite></div>
+										<div class="other1_content content arrow_box"><h4><b>Hey guys</b></h4></div>
+									
+								</li>	
+							</div>
+								<br>	
+
+							 <div class="ll">		
+								<li class="me">
+									<div class="pull-right avatar avatar self1_av" style="display: inline-block;"> <cite title="Source Title">@mark - <span class="currentTime"></span></cite> <img src="img/facebook_icon.png" onmouseover=""></div>
+									<div class="self1_content content self pull-right"><h4><b>Hi Bill! I'm very stressed atm because of all the fake news..so i can't write much</b></h4></div>
+								</li>	
+							</div>
+							<div class="ll"  style="margin-top: 0px">	
+								 <li class="other" >
+									
+										<div class="avatar other2_av" style="margin-top: 10px"><img src="img/apple_icon.png" onmouseover=""> <cite title="Source Title"><span class="currentTime"></span> - @tim</cite></div>
+										<div class="other2_content content "><h4><b>No problem, i got this</b></h4></div>
+									
+								</li>
+							</div>
+							-->
+						
+						</div>
+							<div class="row">
+								<div class="input">
+								  <form>
+									<div class="form-group has-feedback">
+								    	<input type="text" id="in" class="form-control selfinput " style="width:100%;height: 49px">
+								    	<i class="fa fa-paper-plane fa-2x form-control-feedback submitButton" onclick="sendMessage()" style="margin-top:8px;margin-right: 10px"  aria-hidden="true"></i>
+							   	    	<button style="display: none" id="submit" type="submit"></button>
+							   	    </div>
+								</form>
+							</div>
+						</div>
+					</div>
+			
+
+			</div>		
+			<div class="col-md-12" style="background-color: #E6E6E6;height: 100%;margin-top: 30px">
+				
+			</div>
+		</body>
+
+	
 </html>
