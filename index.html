@@ -3,6 +3,7 @@
 		<head>
 			<title>Cleverchat</title>
 			<link rel="stylesheet" type="text/css" href="css/animate.css">
+			<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 				<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -22,42 +23,50 @@
 				function demo(){
 					$('#in').prop('readonly', true);
 					setTimeout(function(){
-						addOther("timcook","img/apple_icon.png","Hey it's me, Tim!"); 		
+						addOther("Harry","img/user_4.png","How is the weather today in Silicon Valley?","user"); 		
 					}, 2000);
 					setTimeout(function(){
-						addOther("mark","img/facebook_icon.png","Hey what's up??"); 		
-					}, 4000);
-
+						addOther("Mark","img/user_4.png","I don't know","admin"); 		
+					}, 5000);
 					setTimeout(function(){
-						keyIn("It's so cold outside!",10); 		
-					}, 6000);
-					setTimeout(function(){
-						addOther("timcook","img/apple_icon.png","Yeah ! 0F atm in Cupertino!"); 		
-					}, 12000);
-					setTimeout(function(){
-						addOther("mark","img/facebook_icon.png","I love Silicon Valley! It's warm even in the winter <3"); 		
-					}, 16000);
-					setTimeout(function(){
-							$('#in').prop('readonly', false);	
-					}, 18000);
+						keyIn("It's pretty cold *snow*",3000); 		
+					}, 7000);
 					
+					setTimeout(function(){
+						addOther("Harry","img/user_4.png","Ok thanks! <span class='marked'>@Jack</span>","user"); 		
+					}, 14000);
+					setTimeout(function(){
+						keyIn("you're welcome :P",3000); 		
+					}, 17000);
+									
+				
 
 
 
 				}
-			function addOther(name,avatar,message){
-				
+			function addOther(name,avatar,message,role){
+				str = "";
+				if(role == "admin"){
+					str = " [<span style='color:red'>Admin</span>]";
+				}
 				n = $(".other").length;
-				$(".chat-box").append('<div style="clear:both"></div><li class="other other'+n+'"><div class="avatar animated fadeInLeft" style="display:inline-block"><img src="'+avatar+'"> <cite title="Source Title"><span class="currentTime"></span> - @'+name+'</cite></div>');
+				$(".chat-box").append('<div style="clear:both"></div><li class="other other'+n+'"><div class="avatar animated fadeInLeft" style="display:inline-block"><img src="'+avatar+'"> <cite title="Source Title"><span class="currentTime"></span> - @'+name+str+'</cite></div>');
 					
 					setTimeout(function(){
 						 $(".other"+n).append('<div class="content animated fadeInLeft"><h4><b>'+message+'</b></h4></div></li>');
 					}, 900);
 				$(".chat-box").scrollTop($(".chat-box")[0].scrollHeight);
-				
+				var currentdate = new Date();
+				h = currentdate.getHours();
+				m = currentdate.getMinutes();
+				if(m == 0||m==1||m==2||m==3||m==4||m==5||m==6||m==7||m==8||m==9){
+					m = "0"+m;
+				}
+				$(".currentTime").html(h+":"+m);
 			}
+
 			   
-			function keyIn(msg){
+			function keyIn(msg,timeout){
 				$("#in").typed({
 				     strings: [msg],
 				      typeSpeed: 50
@@ -65,7 +74,7 @@
 				setTimeout(function() {
 					$("#submit").click();
 
-				}, 3000);
+				}, timeout);
 
 				
 
@@ -87,13 +96,22 @@
 				message = $("#in").val();
               if(message != ""){
 				n = $(".self").length;
-				$(".chat-box").append('<div style="clear:both"></div><li class="me me'+n+'" style="margin-top:10px"><div class="avatar pull-right animated fadeInLeft" style="display:inline-block"> <cite title="Source Title">@jackdorsey - <span class="currentTime"></span></cite> <img src="img/twitter_icon.png" onmouseover=""></div>');
-				$(".chat-box").scrollTop($(".chat-box")[0].scrollHeight);
+				message = message.replace("*snow*", '<i class="em em-snowflake"></i>');
+				message = message.replace(":P",'<i class="em em-stuck_out_tongue"></i>');
+				$(".chat-box").append('<div style="clear:both"></div><li class="me me'+n+'" style="margin-top:10px"><div class="avatar pull-right animated fadeInLeft" style="display:inline-block"> <cite title="Source Title">@<span class="ownname">Jack</span> [<span style="color:blue">Moderator</span>] - <span class="currentTime"></span></cite> <img src="img/user_2.png" onmouseover=""></div>');
+				
 					setTimeout(function(){
 						 $(".me"+n).append('<div class="content self pull-right animated fadeInRight"><h4><b>'+message+'</b></h4></div></li>');
 					$(".chat-box").scrollTop($(".chat-box")[0].scrollHeight);	
 					}, 900);
                 $("#in").val(""); 
+                var currentdate = new Date();
+				h = currentdate.getHours();
+				m = currentdate.getMinutes();
+				if(m == 0||m==1||m==2||m==3||m==4||m==5||m==6||m==7||m==8||m==9){
+					m = "0"+m;
+				}
+				$(".currentTime").html(h+":"+m);
                 }
 			}
 
@@ -102,11 +120,19 @@
 			
 		</head>
 		<body onload="demo()" style="background-color: #08088A">
-			<div class="col-md-6 col-md-offset-1" style="z-index: -1;float: left;margin-top: 100px;position: absolute;color: white">
-				<h1 class="fred" style="font-size: 60px;margin-left: 10px"><b>Cleverchat</b></h1>
-				
+			<div class="col-md-6 col-md-offset-1" style="float: left;margin-top: 100px;position: absolute;color: white">
+				<h1 class="fred" style="font-size: 60px;margin-left: 10px"><b >Cleverchat</b></h1>
+
 			</div>
-			
+			<div class="register" style="margin-left: 1350px;position: absolute;color:white;margin-top: 100px">
+				<h1 class="fred" style="font-size: 60px">Sign up now!</h1>
+				<input type="text" class="form-control" name="" style="border-radius: none !important;text-align: center" placeholder="Username">
+				<input type="text" class="form-control" name="" style="border-radius: none !important;text-align: center;margin-top: 5px" placeholder="Company Name">
+				<input type="text" class="form-control" name="" style="border-radius: none !important;text-align: center;margin-top: 5px" placeholder="Website Domain">
+				<input type="text" class="form-control" name="" style="border-radius: none !important;text-align: center;margin-top: 5px" placeholder="Email">
+				<input type="text" class="form-control" name="" style="border-radius: none !important;text-align: center;margin-top: 5px" placeholder="Password">
+				<button type="submit" class="btn btn-success" style="float: right;margin-top: 10px">Sign up</button>
+			</div>
 			<div class="container" style="z-index: 1">
 				
 					<div class="col-md-8 col-md-offset-2 header">
